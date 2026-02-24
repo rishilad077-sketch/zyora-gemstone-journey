@@ -40,9 +40,9 @@ export default function CTASection() {
           viewport={{ once: true }}
           className="font-heading text-4xl md:text-6xl font-light text-primary-foreground mb-6"
         >
-          Ready to Find Your
+          Find the Stone
           <br />
-          <span className="italic">Perfect Gemstone?</span>
+          <span className="italic">That's Meant for You</span>
         </motion.h2>
 
         <motion.p
@@ -52,7 +52,7 @@ export default function CTASection() {
           transition={{ delay: 0.15 }}
           className="text-primary-foreground/60 font-body text-lg mb-10"
         >
-          Explore the Zyora collection and carry Earth's good energy with you.
+          Explore authentic gemstone jewelry designed to support your wellness, spiritual growth, and daily intentions.
         </motion.p>
 
         <motion.a
@@ -67,7 +67,7 @@ export default function CTASection() {
           whileTap={{ scale: 0.97 }}
           className="inline-block px-12 py-5 bg-amethyst text-accent-foreground font-body text-sm tracking-widest uppercase rounded-full transition-colors hover:bg-amethyst-glow cursor-pointer"
         >
-          Explore Zyora Collection
+          Find Yours →
         </motion.a>
 
         <motion.p
@@ -75,9 +75,9 @@ export default function CTASection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="mt-6 text-primary-foreground/40 text-sm font-body"
+          className="mt-6 text-primary-foreground/40 text-xs font-body tracking-wider"
         >
-          ✨ Free gemstone guide with every purchase
+          Moon-Cleansed Before Dispatch • Free Shipping ₹599+ • 5–7 Day Delivery • 2,000+ Happy Customers
         </motion.p>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 const links = [
   { label: "Gemstones", href: "#gemstones" },
   { label: "How to Wear", href: "#how-to-wear" },
+  { label: "Crystal Pairings", href: "#crystal-pairings" },
   { label: "Care Guide", href: "#care" },
   { label: "FAQ", href: "#faq" },
 ];

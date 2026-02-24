@@ -7,15 +7,12 @@ const GemstoneScene = lazy(() => import("./GemstoneScene"));
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary">
-      {/* 3D Scene */}
       <Suspense fallback={null}>
         <GemstoneScene />
       </Suspense>
 
-      {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60 pointer-events-none" />
 
-      {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +20,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-amethyst-glow font-body text-sm md:text-base tracking-[0.3em] uppercase mb-6"
         >
-          Zyora — Carry Earth's Good Energy
+          Zyora — Healing Crystals & Natural Gemstone Jewelry
         </motion.p>
 
         <motion.h1
@@ -34,7 +31,7 @@ export default function Hero() {
         >
           Your Complete Guide
           <br />
-          <span className="italic font-normal">to Healing Gemstones</span>
+          <span className="italic font-normal">to Healing Crystal Bracelets</span>
         </motion.h1>
 
         <motion.p
@@ -43,9 +40,9 @@ export default function Hero() {
           transition={{ delay: 0.9, duration: 0.8 }}
           className="text-primary-foreground/70 font-body text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light"
         >
-          Where Ancient Wisdom Meets Modern Science.
+          Discover the natural power of gemstone bracelets.
           <br className="hidden md:block" />
-          Discover the power of natural stones — handpicked for your journey.
+          Find authentic healing stones that support your wellness journey.
         </motion.p>
 
         <motion.a
@@ -57,11 +54,10 @@ export default function Hero() {
           whileTap={{ scale: 0.97 }}
           className="inline-block px-10 py-4 bg-amethyst text-accent-foreground font-body text-sm tracking-widest uppercase rounded-full transition-colors hover:bg-amethyst-glow cursor-pointer"
         >
-          Begin Your Crystal Journey
+          Find Yours →
         </motion.a>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
