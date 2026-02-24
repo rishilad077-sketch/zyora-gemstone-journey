@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gemstones, intentions, type Gemstone } from "@/data/gemstones";
-import { X } from "lucide-react";
+import { X, AlertTriangle } from "lucide-react";
 
 function GemstoneCard({
   stone,
@@ -16,7 +16,7 @@ function GemstoneCard({
     <motion.button
       layout
       onClick={onClick}
-      whileHover={{ scale: 1.05, y: -4 }}
+      whileHover={{ scale: 1.03, y: -3 }}
       whileTap={{ scale: 0.97 }}
       className="glass-card-hover p-6 text-left w-full cursor-pointer"
       style={{
@@ -32,16 +32,23 @@ function GemstoneCard({
       </div>
       <h3 className="font-heading text-xl font-semibold text-foreground">{stone.name}</h3>
       <p className="text-muted-foreground text-sm font-body mt-1">{stone.subtitle}</p>
+
+      {/* Best For chips */}
       <div className="flex flex-wrap gap-1.5 mt-3">
-        {stone.intentions.map((intent) => (
+        {stone.bestFor.slice(0, 3).map((tag) => (
           <span
-            key={intent}
+            key={tag}
             className="text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground font-body"
           >
-            {intent}
+            {tag}
           </span>
         ))}
       </div>
+
+      {/* Resonates With */}
+      <p className="text-muted-foreground/70 text-[11px] font-body mt-3 italic leading-snug">
+        ✦ {stone.resonatesWith}
+      </p>
     </motion.button>
   );
 }
@@ -74,7 +81,21 @@ function StoneDetail({ stone, onClose }: { stone: Gemstone; onClose: () => void 
             {stone.name}
           </h3>
           <p className="text-amethyst font-heading text-lg italic mb-4">{stone.subtitle}</p>
-          <p className="text-muted-foreground font-body leading-relaxed">{stone.description}</p>
+          <p className="text-muted-foreground font-body leading-relaxed mb-5">{stone.description}</p>
+
+          {/* When to Reach For It */}
+          <div className="p-4 rounded-xl bg-secondary/60 mb-4">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 font-body">When to Reach For It</p>
+            <p className="font-body text-sm text-foreground leading-relaxed">{stone.whenToReach}</p>
+          </div>
+
+          {/* Water Warning */}
+          {stone.waterWarning && (
+            <div className="p-4 rounded-xl bg-destructive/5 border border-destructive/15 flex items-start gap-3">
+              <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
+              <p className="font-body text-xs text-destructive/80 leading-relaxed">{stone.waterWarning}</p>
+            </div>
+          )}
         </div>
 
         <div className="space-y-6">
@@ -104,15 +125,23 @@ function StoneDetail({ stone, onClose }: { stone: Gemstone; onClose: () => void 
             </div>
           </div>
 
+          {/* Resonates With */}
+          <div className="p-4 rounded-xl bg-secondary/60">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-body">Resonates With</p>
+            <p className="font-body text-sm text-foreground italic">✦ {stone.resonatesWith}</p>
+          </div>
+
+          {/* Pairs Well With */}
           <div>
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-body">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3 font-body">
               Pairs Well With
             </p>
-            <div className="flex flex-wrap gap-2">
-              {stone.complementary.map((c) => (
-                <span key={c} className="text-xs px-3 py-1 rounded-full border border-border text-foreground font-body">
-                  {c}
-                </span>
+            <div className="space-y-2">
+              {stone.pairings.map((p) => (
+                <div key={p.combo} className="p-3 rounded-xl border border-border/50 bg-secondary/30">
+                  <p className="font-heading text-sm font-semibold text-foreground">{p.combo}</p>
+                  <p className="font-body text-xs text-muted-foreground mt-0.5">{p.effect}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -139,11 +168,14 @@ export default function GemstoneSelector() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
+          <p className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-4 font-body">
+            Find Your Healing Stone
+          </p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-foreground mb-4">
-            Discover Your <span className="italic">Perfect Stone</span>
+            Discover Your <span className="italic">Perfect Gemstone</span>
           </h2>
           <p className="text-muted-foreground font-body max-w-xl mx-auto">
-            Each gemstone carries unique energy. Find the one that resonates with your intention.
+            Each healing crystal carries unique energy. Find the stone that speaks to your soul.
           </p>
         </motion.div>
 
@@ -184,7 +216,7 @@ export default function GemstoneSelector() {
         </AnimatePresence>
 
         {/* Grid */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           <AnimatePresence>
             {filtered.map((stone, i) => (
               <motion.div

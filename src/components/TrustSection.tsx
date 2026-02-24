@@ -1,30 +1,36 @@
 import { motion } from "framer-motion";
-import { Sparkles, Moon, RefreshCw, Heart } from "lucide-react";
+import { Sparkles, Moon, Heart, Truck, Package } from "lucide-react";
 
 const trustItems = [
   {
+    icon: Heart,
+    title: "2,000+ Happy Customers",
+    desc: "Join thousands wearing authentic crystal bracelets for healing, protection, and spiritual growth.",
+    color: "text-rose-quartz-deep",
+  },
+  {
     icon: Sparkles,
-    title: "100% Natural Gemstones",
-    desc: "Lab-tested, never synthetic",
+    title: "Natural Gemstone Jewellery",
+    desc: "Ethically sourced gemstones. Every crystal bracelet is genuine and authentic.",
     color: "text-citrine",
   },
   {
     icon: Moon,
-    title: "Pre-Cleansed & Charged",
-    desc: "Under full moon before shipping",
+    title: "Moon-Cleansed Before Dispatch",
+    desc: "Every piece leaves us pre-cleansed under the full moon and charged with intention — ready to wear from the moment it arrives.",
     color: "text-moonstone",
   },
   {
-    icon: RefreshCw,
-    title: "7-Day Easy Returns",
-    desc: "Not feeling the energy? Full refund",
+    icon: Truck,
+    title: "Delivered in 5–7 Days",
+    desc: "Quick dispatch across India. Your bracelet reaches you fresh and energized.",
     color: "text-aventurine-glow",
   },
   {
-    icon: Heart,
-    title: "2,000+ Happy Customers",
-    desc: "Join the Zyora family",
-    color: "text-rose-quartz-deep",
+    icon: Package,
+    title: "Free Shipping",
+    desc: "Free delivery across India for orders above ₹599.",
+    color: "text-amethyst",
   },
 ];
 
@@ -40,21 +46,21 @@ export default function TrustSection() {
         >
           Why thousands trust Zyora
         </motion.p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {trustItems.map((item, i) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 30, rotate: -1 }}
               whileInView={{ opacity: 1, y: 0, rotate: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.6 }}
-              className="glass-card-hover p-8 text-center"
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="glass-card-hover p-6 text-center"
             >
-              <item.icon className={`w-8 h-8 mx-auto mb-4 ${item.color}`} />
-              <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
+              <item.icon className={`w-7 h-7 mx-auto mb-3 ${item.color}`} />
+              <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
                 {item.title}
               </h3>
-              <p className="text-muted-foreground text-sm font-body">{item.desc}</p>
+              <p className="text-muted-foreground text-xs font-body leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </div>

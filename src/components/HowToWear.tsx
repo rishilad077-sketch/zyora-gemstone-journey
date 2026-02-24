@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { gemstones } from "@/data/gemstones";
 
 const wristGuide = [
   {
     side: "Left Wrist",
     subtitle: "Receive Energy",
-    description: "Your left side is your receiving side. Wear stones here to absorb their healing energy into your body and mind.",
-    stones: gemstones.filter((s) => s.wearingGuide.toLowerCase().includes("left")),
+    description:
+      "Your left side is your receiving side. Wear healing crystal bracelets on your left wrist to absorb their energy into your body, mind, and spirit. Perfect for inner work.",
+    stones: [
+      { name: "Rose Quartz", chakra: "Heart Chakra", purpose: "Receive love and compassion", emoji: "💗" },
+      { name: "Amethyst", chakra: "Crown & Third Eye Chakra", purpose: "Receive calm and peace", emoji: "🔮" },
+      { name: "Green Aventurine", chakra: "Heart Chakra", purpose: "Attract prosperity and luck", emoji: "🍀" },
+    ],
   },
   {
     side: "Right Wrist",
     subtitle: "Project Energy",
-    description: "Your right side is your giving side. Wear stones here to project their energy outward — confidence, protection, and power.",
-    stones: gemstones.filter((s) => s.wearingGuide.toLowerCase().includes("right")),
-  },
-  {
-    side: "Either Wrist",
-    subtitle: "Universal Energy",
-    description: "Some master stones work on both sides, amplifying all energy regardless of placement.",
-    stones: gemstones.filter((s) => s.wearingGuide.toLowerCase().includes("either")),
+    description:
+      "Your right side is your giving side. Wear crystal bracelets on your right wrist to send energy outward — confidence, protection, and power. Perfect for taking action in the world.",
+    stones: [
+      { name: "Citrine", chakra: "Solar Plexus Chakra", purpose: "Project abundance and confidence", emoji: "☀️" },
+      { name: "Tiger Eye", chakra: "Solar Plexus Chakra", purpose: "Project courage and focus", emoji: "🐯" },
+      { name: "Pyrite", chakra: "Solar Plexus Chakra", purpose: "Project willpower and wealth", emoji: "✨" },
+    ],
   },
 ];
 
@@ -35,11 +38,14 @@ export default function HowToWear() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
+          <p className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-4 font-body">
+            Wearing Guide
+          </p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-foreground mb-4">
-            How to <span className="italic">Wear</span> Your Stones
+            How to Wear Crystal Bracelets <span className="italic">for Maximum Benefits</span>
           </h2>
-          <p className="text-muted-foreground font-body max-w-lg mx-auto">
-            Placement matters. Learn which wrist unlocks each stone's full potential.
+          <p className="text-muted-foreground font-body max-w-xl mx-auto">
+            The wrist you choose affects how you receive or project the stone's energy. Left wrist receives energy inward. Right wrist projects energy outward.
           </p>
         </motion.div>
 
@@ -71,36 +77,25 @@ export default function HowToWear() {
           <div className="text-center mb-8">
             <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-1">
               {wristGuide[activeTab].side}{" "}
-              <span className="text-amethyst italic">{wristGuide[activeTab].subtitle}</span>
+              <span className="text-amethyst italic">— {wristGuide[activeTab].subtitle}</span>
             </h3>
             <p className="text-muted-foreground font-body text-sm max-w-md mx-auto mt-2">
               {wristGuide[activeTab].description}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {wristGuide[activeTab].stones.map((stone) => (
               <div
-                key={stone.id}
-                className="p-5 rounded-xl bg-secondary/80 flex items-center gap-4"
+                key={stone.name}
+                className="p-5 rounded-xl bg-secondary/80 text-center"
               >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-                  style={{ backgroundColor: `${stone.color}20` }}
-                >
-                  {stone.emoji}
-                </div>
-                <div>
-                  <p className="font-heading font-semibold text-foreground">{stone.name}</p>
-                  <p className="text-xs text-muted-foreground font-body">{stone.chakra} Chakra</p>
-                </div>
+                <span className="text-3xl block mb-3">{stone.emoji}</span>
+                <p className="font-heading font-semibold text-foreground text-lg">{stone.name}</p>
+                <p className="text-xs text-muted-foreground font-body mt-1">{stone.chakra}</p>
+                <p className="text-xs text-foreground/70 font-body mt-2 italic">{stone.purpose}</p>
               </div>
             ))}
-            {wristGuide[activeTab].stones.length === 0 && (
-              <p className="col-span-full text-center text-muted-foreground font-body text-sm py-8">
-                No stones specifically recommended for this placement.
-              </p>
-            )}
           </div>
         </motion.div>
       </div>
